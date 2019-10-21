@@ -3,37 +3,54 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // This widget is the root of your application
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "widget.title",
-            style: TextStyle(color: Colors.amberAccent),
-          ),
-        ),
-        body: AwesomePage(),
+        body: MyFirstWidget(),
       ),
     );
   }
 }
 
-class AwesomePage extends StatelessWidget {
-  const AwesomePage({
-    Key key,
-  }) : super(key: key);
+class MyFirstWidget extends StatefulWidget {
+  final Color color;
+
+  const MyFirstWidget({Key key, this.color = Colors.amber}) : super(key: key);
+
+  @override
+  _MyFirstWidgetState createState() => _MyFirstWidgetState();
+}
+
+class _MyFirstWidgetState extends State<MyFirstWidget> {
+  int count = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        child: Text("Hello World"),
+      //child: Container(width: 50, height: 50, color: widget.color),
+      child: FlatButton(
+        child: Text('$count'),
+        color: widget.color,
+        onPressed: () {
+          setState(() {
+            count++;
+          });
+        },
       ),
     );
   }
