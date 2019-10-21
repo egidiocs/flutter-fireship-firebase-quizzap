@@ -16,19 +16,13 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.amber,
         ),
         body: Center(
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  height: 100,
-                  child: Text(
-                    'Hello World this is too long',
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.display3,
-                  ),
-                ),
-              ),
-            ],
+          child: GestureDetector(
+            onTap: () => print('tapped!'),
+            child: Container(
+              width: 100,
+              height: 100,
+              color: Colors.purple,
+            ),
           ),
         ),
       ),
