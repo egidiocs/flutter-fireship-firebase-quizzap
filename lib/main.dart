@@ -7,17 +7,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('My Cool App'),
+        appBar: AppBar(
+          title: Text('My Cool App'),
+        ),
+        body: Center(
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: Colors.amberAccent,
+                //shape: BoxShape.circle,
+                //border: Border.all(width: 4, color: Colors.black),
+                //boxShadow: [
+                //  BoxShadow(offset: Offset(40, 40), color: Colors.purple),
+                //  BoxShadow(offset: Offset(20, 20), color: Colors.pink),
+                //],
+                gradient: RadialGradient(colors: [Colors.yellow, Colors.pink])),
           ),
-          body: Center(
-            child: Container(
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                  color: Colors.amberAccent, shape: BoxShape.circle),
-            ),
-          )),
+        ),
+      ),
     );
   }
 }
