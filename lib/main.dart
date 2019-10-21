@@ -7,22 +7,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('My Cool App'),
-        ),
-        body: Center(
-          child: Icon(Icons.cake),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.arrow_forward),
-        ),
-        drawer: Drawer(),
-        bottomNavigationBar: BottomNavigationBar(items: [
-          BottomNavigationBarItem(title: Text('foo'), icon: Icon(Icons.call)),
-          BottomNavigationBarItem(title: Text('bar'), icon: Icon(Icons.cached))
-        ]),
-      ),
+          appBar: AppBar(
+            title: Text('My Cool App'),
+          ),
+          body: Center(
+            child: Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                  color: Colors.amberAccent, shape: BoxShape.circle),
+            ),
+          )),
     );
   }
 }
