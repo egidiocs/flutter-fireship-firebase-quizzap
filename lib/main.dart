@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  ScrollController _controller = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,10 +18,28 @@ class MyApp extends StatelessWidget {
           title: Text("myApp"),
           backgroundColor: Colors.amber,
         ),
-        body: GridView.count(
-          crossAxisCount: 4,
-          scrollDirection: Axis.vertical,
-          children: _cards(),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.amberAccent,
+          child: Icon(Icons.add_box),
+          onPressed: () => _controller.animateTo(_controller.offset + 10000,
+              curve: Curves.easeIn, duration: Duration(milliseconds: 500)),
+        ),
+        body: ListView.builder(
+          controller: _controller,
+          itemBuilder: (context, idx) {
+            return Container(
+              color: Colors.blue,
+              margin: EdgeInsets.all(10),
+              height: 100,
+              child: Center(
+                child: Text(
+                  '$idx',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
