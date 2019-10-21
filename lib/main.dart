@@ -11,17 +11,18 @@ class MyApp extends StatelessWidget {
             title: Text("myApp"),
             backgroundColor: Colors.amber,
           ),
-          body: Container(
-            color: Colors.amberAccent,
-            padding: EdgeInsets.all(16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+          body: SizedBox(
+            child: Stack(
               children: <Widget>[
-                Icon(Icons.cake, color: Colors.black, size: 50),
-                Icon(Icons.cake, color: Colors.black, size: 100),
-                Icon(Icons.cake, color: Colors.black, size: 150),
-                Icon(Icons.cake, color: Colors.black, size: 200),
+                Icon(Icons.camera, color: Colors.black, size: 100),
+                Align(
+                  alignment: Alignment.center,
+                  child: Icon(Icons.camera, color: Colors.pink, size: 100),
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: Icon(Icons.camera, color: Colors.cyan, size: 100),
+                )
               ],
             ),
           )),
