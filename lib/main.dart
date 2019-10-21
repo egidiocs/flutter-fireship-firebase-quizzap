@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'dart:io' show Platform;
 
 void main() => runApp(MyApp());
 
@@ -43,14 +45,23 @@ class _MyFirstWidgetState extends State<MyFirstWidget> {
   Widget build(BuildContext context) {
     return Center(
       //child: Container(width: 50, height: 50, color: widget.color),
-      child: FlatButton(
-        child: Text('$count'),
-        color: widget.color,
-        onPressed: () {
-          setState(() {
-            count++;
-          });
-        },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          FlatButton(
+            child: Text('$count'),
+            color: widget.color,
+            onPressed: () {
+              setState(() {
+                count++;
+              });
+            },
+          ),
+          Platform.isIOS
+              ? Switch(value: true, onChanged: (v) => null)
+              : CupertinoSwitch(value: true, onChanged: (v) => null)
+        ],
       ),
     );
   }
