@@ -5,27 +5,26 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var textStyle = TextStyle(
-      fontSize: 50,
-      fontWeight: FontWeight.bold,
-    );
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("myApp"),
-          backgroundColor: Colors.amber,
-        ),
-        body: Center(
-          child: GestureDetector(
-            onTap: () => print('tapped!'),
-            child: Container(
-              width: 100,
-              height: 100,
-              color: Colors.purple,
-            ),
+          appBar: AppBar(
+            title: Text("myApp"),
+            backgroundColor: Colors.amber,
           ),
-        ),
-      ),
+          body: Container(
+            color: Colors.amberAccent,
+            padding: EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Icon(Icons.cake, color: Colors.black, size: 50),
+                Icon(Icons.cake, color: Colors.black, size: 100),
+                Icon(Icons.cake, color: Colors.black, size: 150),
+                Icon(Icons.cake, color: Colors.black, size: 200),
+              ],
+            ),
+          )),
     );
   }
 }
