@@ -28,17 +28,18 @@ class _CoolBoxState extends State<CoolBox> {
   double width = 100;
   double height = 100;
   Color color = Colors.green;
-
+  double a = 1;
+  String text;
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-        duration: Duration(seconds: 2),
-        curve: Curves.bounceInOut,
+        duration: Duration(seconds: 1),
+        curve: Curves.linear,
         color: color,
         width: width,
         height: height,
         child: FlatButton(
-          child: Text('Random'),
+          child: Text('Random $text'),
           onPressed: () {
             setState(() {
               width = Random().nextDouble() * 400;
@@ -47,7 +48,10 @@ class _CoolBoxState extends State<CoolBox> {
               int r = Random().nextInt(255);
               int b = Random().nextInt(255);
               int g = Random().nextInt(255);
-              color = Color.fromRGBO(r, b, g, 1);
+              a = Random().nextDouble();
+
+              text = a.toString();
+              color = Color.fromRGBO(r, b, g, a);
             });
           },
         ));
