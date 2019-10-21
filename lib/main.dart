@@ -11,7 +11,8 @@ class MyApp extends StatelessWidget {
           title: Text("myApp"),
           backgroundColor: Colors.amber,
         ),
-        body: ListView(
+        body: GridView.count(
+          crossAxisCount: 4,
           scrollDirection: Axis.vertical,
           children: _cards(),
         ),
@@ -24,8 +25,7 @@ List<Widget> _cards() {
   return [1, 2, 3, 4, 5, 6, 7, 8, 9]
       .map((v) => Container(
             color: Colors.blue,
-            margin: EdgeInsets.all(20),
-            height: 100,
+            margin: EdgeInsets.all(1),
             child: Center(
               child: Text(
                 '$v',
