@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 
 void main() => runApp(MyApp());
 
@@ -6,103 +8,43 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {
-        '/home': (context) => HomeScreen(),
-        '/slideshow': (context) => SlideshowScreen()
-      },
       home: HomeScreen(),
     );
   }
 }
 
 class HomeScreen extends StatelessWidget {
+  final Firestore db = Firestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-        backgroundColor: Colors.red,
-      ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FlatButton(
-              child: Text('push'),
-              color: Colors.green,
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => SlideshowScreen(name: 'Jeff'))
-                // );
+        appBar: AppBar(title: Text('Home')),
+        body: Center(
+          child: StreamBuilder<DocumentSnapshot>(
+              stream: db
+                  .collection('users')
+                  .document('mB6sGaFBczfIW50DJyvGDcQWOvW2')
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  var data = snapshot.data.data;
 
-                //  Navigator.pushNamed(
-                //     context,
-                //     '/slideshow'
-                //   );
-
-                Navigator.pushNamed(context, '/slideshow');
-              },
-            ),
-            FlatButton(
-              child: Text('push replacement'),
-              color: Colors.blue,
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => SlideshowScreen(name: 'Jeff'))
-                // );
-
-                //  Navigator.pushNamed(
-                //     context,
-                //     '/slideshow'
-                //   );
-
-                Navigator.pushReplacementNamed(context, '/slideshow');
-              },
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class SlideshowScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('SlideshowScreen'),
-        backgroundColor: Colors.pink,
-      ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FlatButton(
-              child: Text('home'),
-              color: Colors.green,
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => SlideshowScreen(name: 'Jeff'))
-                // );
-
-                //  Navigator.pushNamed(
-                //     context,
-                //     '/slideshow'
-                //   );
-                if (Navigator.canPop(context)) {
-                  Navigator.pop(context);
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Image.network(data['photoURL']),
+                      Text(
+                        data['username'],
+                        style: Theme.of(context).textTheme.display1,
+                      ),
+                    ],
+                  );
                 } else {
-                  Navigator.pushReplacementNamed(context, '/home');
+                  return Container();
                 }
-              },
-            ),
-          ],
-        ),
-      ),
-    );
+              }),
+        ));
   }
 }
