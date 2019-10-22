@@ -21,11 +21,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: Text('Home')),
         body: Center(
-          child: StreamBuilder<DocumentSnapshot>(
-              stream: db
+          child: FutureBuilder<DocumentSnapshot>(
+              future: db
                   .collection('users')
                   .document('mB6sGaFBczfIW50DJyvGDcQWOvW2')
-                  .snapshots(),
+                  .get(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   var data = snapshot.data.data;
